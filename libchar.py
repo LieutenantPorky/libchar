@@ -160,7 +160,7 @@ def obj_clean():
     size = pygame.display.get_window_size()
     for obj in living:
         if not obj in character_list:
-            if (obj.position.x > size[0] * 2) or (obj.position.y > size[1] *2):
+            if (abs(obj.position.x) > size[0] * 2) or (abs(obj.position.y) > size[1] *2):
                 obj.kill()
 
 
