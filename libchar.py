@@ -108,17 +108,14 @@ class Agent:
 
 
     def add_tag(self, tag):
-        print("added tag")
         global groups
         if tag in self.tags:
-            print(self.tags)
             return None
         self.tags.append(tag)
         
         if tag in groups:
             old = groups[tag]
             old.append(self)
-            print(old)
             groups[tag] = old
         else:
             groups[tag] = [self]
