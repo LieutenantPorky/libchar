@@ -11,11 +11,11 @@ from pygame.math import Vector2 as vec
 
 
 # libchar.setup() sets up the game screen with a background
-libchar.setup(init_background = "background.png")
+libchar.setup(init_background = "assets/background.png")
 
 # Since we'll be controlling the spaceship, let's make it a Character.
 # Also, it's nicer to initialise it in the center of the screen.
-spaceship = libchar.Character("spaceship.png",init_position = vec(640/2,400))
+spaceship = libchar.Character("assets/spaceship.png",init_position = vec(640/2,400))
 
 # Let's define a function to shoot a bullet. We'll then pair this function
 # with a keypress event.
@@ -24,7 +24,7 @@ spaceship = libchar.Character("spaceship.png",init_position = vec(640/2,400))
 # of the screen.
 # The final step is to add a "bullet" tag to it.
 def shoot(self):
-    bullet = libchar.Agent("bullet.png")
+    bullet = libchar.Agent("assets/bullet.png")
     bullet.position = self.position + vec (12, 0)
     bullet.velocity = vec(0,-0.5)
     bullet.add_tag("bullet")
@@ -37,7 +37,7 @@ spaceship.event(loc.K_SPACE, shoot)
 num_aliens = 6 
 aliens = []
 for i in range(num_aliens):
-    new_alien = libchar.Agent("alien.png")
+    new_alien = libchar.Agent("assets/alien.png")
     new_alien.position =vec(100 * i, 0)
     new_alien.velocity = vec(0.2,0)
     aliens.append(new_alien)
