@@ -57,7 +57,7 @@ class Agent:
         self.draw()
     
     def set_position(self, newpos):
-        self.move(pygame.math.vector2(newpos))
+        self.move(pygame.math.Vector2(newpos))
 
     def set_velocity(self, newvel):
         self.velocity = pygame.math.Vector2(newvel)
