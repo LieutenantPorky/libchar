@@ -55,6 +55,13 @@ class Agent:
         self.clear()
         self.position = newpos
         self.draw()
+    
+    def set_position(self, newpos):
+        self.move(pygame.math.vector2(newpos))
+
+    def set_velocity(self, newvel):
+        self.velocity = pygame.math.Vector2(newvel)
+
 
     def step(self):
         global dt
