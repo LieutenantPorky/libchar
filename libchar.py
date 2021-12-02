@@ -168,14 +168,20 @@ def obj_clean():
                 obj.kill()
 
 
-
 def update():
     
     for ev in pygame.event.get(eventtype = pygame.KEYDOWN):
         for char in character_list:
             char.pull_event(ev.key)
 
-
+    pressed = pygame.key.get_pressed()
+    for i in range(len(pressed)):
+        if pressed[i]:
+            name = "K_"+pygame.key.name(i)+"()"
+            try:
+                exec(name)
+            except:
+                pass
 
     global clock
     global dt

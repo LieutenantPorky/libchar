@@ -43,28 +43,20 @@ for i in range(num_aliens):
     aliens.append(new_alien)
 
 
+def K_a():
+    if spaceship.position.x > 0:
+        spaceship.velocity.x = -0.3
 
+def K_d():
+    if spaceship.position.x < 620:
+        spaceship.velocity.x = 0.3
 
-
-
+libchar.K_a = K_a
+libchar.K_d = K_d
 # This is our actual game loop - this while statement will loop forever
 while 1:
 
-    # First, we need to deal with moving the spaceship.
-    # pygame.key.get_pressed() returns a list of keys that are currently down
-    pressed_keys = pygame.key.get_pressed()
-
-    # If the a key is pressed and the spaceship is not on the left border, make it go left
-    if pressed_keys[loc.K_a] and spaceship.position.x > 0:
-        spaceship.velocity.x = -0.3
-
-    # Ditto for d key and right
-    elif pressed_keys[loc.K_d] and spaceship.position.x < 620:
-        spaceship.velocity.x = 0.3
-
-    # Otherwise, have it stay still
-    else:
-        spaceship.velocity.x = 0
+    spaceship.velocity.x = 0
 
 
     # Now, let's deal with the aliens. We want them to bounce horizontally across the screen,
