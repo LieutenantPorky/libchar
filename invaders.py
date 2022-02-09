@@ -51,8 +51,7 @@ def K_d():
     if spaceship.position.x < 620:
         spaceship.velocity.x = 0.3
 
-libchar.K_a = K_a
-libchar.K_d = K_d
+
 # This is our actual game loop - this while statement will loop forever
 while 1:
 
@@ -84,4 +83,4 @@ while 1:
             hit_bullet.kill()
             alien.kill()
         
-    libchar.update()
+    libchar.update(globals())

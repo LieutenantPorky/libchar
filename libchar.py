@@ -168,8 +168,7 @@ def obj_clean():
                 obj.kill()
 
 
-def update():
-    
+def update(parent_globals):
     for ev in pygame.event.get(eventtype = pygame.KEYDOWN):
         for char in character_list:
             char.pull_event(ev.key)
@@ -177,11 +176,9 @@ def update():
     pressed = pygame.key.get_pressed()
     for i in range(len(pressed)):
         if pressed[i]:
-            name = "K_"+pygame.key.name(i)+"()"
-            try:
-                exec(name)
-            except:
-                pass
+            code = "K_{}".format(pygame.key.name(i))
+            if code in parent_globals:
+                parent_globals[code]()
 
     global clock
     global dt
