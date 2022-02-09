@@ -8,6 +8,7 @@ ground = libchar.Agent("assets/grass.png")
 ground.move((libchar.screen.get_width()/2, libchar.screen.get_height() - ground.get_height()/2))
 ground.add_tag("platform")
 
+
 platform = libchar.Agent("assets/small_platform.png")
 platform.move((libchar.screen.get_width()/2, libchar.screen.get_height() - 100))
 platform.add_tag("platform")

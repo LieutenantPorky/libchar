@@ -204,7 +204,7 @@ def update(parent_globals):
     dt = clock.tick()
     frame += 1
 
-    if not frame % gc_int:
+    if gc_int and (not frame % gc_int):
         obj_clean()
     for i in dying:
         i.clear()
