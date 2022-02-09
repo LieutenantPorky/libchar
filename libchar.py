@@ -1,4 +1,5 @@
 import pygame
+import math
 
 
 screen = None
@@ -8,6 +9,7 @@ dying = []
 living = []
 character_list = []
 groups = {}
+collision_list = []
 clock = None
 
 frame = 0
@@ -30,7 +32,11 @@ def setup(width = 640, height=480, init_background = None):
 
     pygame.display.update()
 
-
+def set_background(i_background):
+    global background
+    global screen
+    background = pygame.image.load(i_background).convert()
+    screen.blit(background, (0,0))
 
 class Agent:
     img = None
@@ -39,6 +45,7 @@ class Agent:
     velocity = pygame.math.Vector2(0,0)
     rotation = 0
     tags = []
+    is_rect = True
 
     def __init__(self, image, init_position = None):
         self.img = pygame.image.load(image).convert_alpha()
@@ -62,6 +69,15 @@ class Agent:
     def set_velocity(self, newvel):
         self.velocity = pygame.math.Vector2(newvel)
 
+    def get_corner_position(self):
+        return pygame.math.Vector2(self.position[0] - math.ceil(self.img.get_rect().width /2 + 1),self.position[1] - math.ceil(self.img.get_rect().height/2 + 1))
+
+    def get_height(self):
+        return self.get_rect().height
+
+    def get_width(self):
+        return self.get_rect().width
+
 
     def step(self):
         global dt
@@ -82,13 +98,13 @@ class Agent:
         global screen
         global background
 
-        screen.blit(background, self.img.get_rect().move(self.position), self.img.get_rect().move(self.position))
+        screen.blit(background, self.img.get_rect().move(self.get_corner_position()), self.img.get_rect().move(self.get_corner_position()))
 
 
 
     def draw(self):
         global screen
-        screen.blit(self.img, self.img.get_rect().move(self.position))
+        screen.blit(self.img, self.img.get_rect().move(self.get_corner_position()))
     
     def kill(self):
         global dying, living, groups
@@ -99,7 +115,7 @@ class Agent:
                 groups[i].remove(self)
 
     def get_rect(self):
-        return self.img.get_rect().move(self.position)
+        return self.img.get_rect().move(self.get_corner_position())
     
     def is_colliding(self, other):
         return self.get_rect().colliderect(other.get_rect())

@@ -21,4 +21,4 @@ while 1:
     if ball.is_colliding(platform):
         ball.velocity.y = -1 * abs(ball.velocity.y)
 
-    libchar.update()
+    libchar.update(globals())
